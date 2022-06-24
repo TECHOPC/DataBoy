@@ -1,6 +1,21 @@
 local addon_commands = {}
 
+
 --lista de comandos
+
+function start(chat_id , text)
+  if text == "/start" then
+    send_message(chat_id, "olá sou o Gambiarrinha, use /help para saber oque eu posso fazer")
+    print("Comando Start")
+  end
+end
+
+function help(text, chat_id)
+  if text == "/help" then
+    send_message(chat_id, "esses são os comandos que eu entendo /start , /help , /echo , /test")
+    print("Comando Test")
+  end 
+end
 
 function echo(text, chat_id)
   if text == "/echo" then
@@ -16,19 +31,8 @@ function test(chat_id, text)
   end  
 end
 
-function start(chat_id , text)
-  if text == "/start" then
-    send_message(chat_id, "olá sou o Gambiarrinha, use /help para saber oque eu posso fazer")
-    print("Comando Start")
-  end
-end
 
-function help(text, chat_id)
-  if text == "/help" then
-    send_message(chat_id, "esses são os comandos que eu entendo /start , /help , /echo , /test")
-    print("Comando Test")
-  end 
-end
+
 
 --chama todos os comandos
 

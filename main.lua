@@ -17,7 +17,8 @@ local lunajson = require("lunajson")
 print("Carregando Arquivos locais")
 -- lista de addons
 local addon_commands = require("commands")
-local addon_webhook = require("webhook")
+local addon_chatcommands = require("chatcommands")
+
 print("Carregamento Pronto")
 
 
@@ -135,8 +136,8 @@ while true do
       reload_addons(text, chat_id, user_id)
     end
     addon_commands.commands(text, chat_id, user_id)
-    addon_webhook.webhook(text, chat_id, user_id)
-    
+    addon_chatcommands.chatcommands(text, chat_id, user_id)
+
 
     --mostra algumas informaçoes para debug
     debug_mensages(update_id,chat_id,text,user_id)
