@@ -32,11 +32,9 @@ function test(chat_id, text)
 end
 
 
-
-
 --chama todos os comandos
 
-function addon_commands.commands(text, chat_id,user_id) 
+function addon_commands.commands(text, chat_id,user_id, Admin_id) 
   echo(text, chat_id)
   test(chat_id, text)
   start(chat_id , text)

@@ -4,8 +4,8 @@
 
 --configs para o bot
 local debug_mode = false --controla mensagems de debug pode ser alterado usando o comando /debug_mode_true ou /debug_mode_false
-local admin_id = 123456798  --seu id
-local bot_token = "123456789:ABCDEFGHIJKLMNOPQRSTUVXXYZAAABACAD" --token do bot
+Admin_id = 2021127699  --seu id
+local bot_token = "5489333820:AAERLMdkMhJrT4OjyOmyxkvGjSFv3Zo0ZA0" --token do bot
 local url_path = "https://api.telegram.org/bot"..bot_token.."/" --url para request
 
 
@@ -17,7 +17,6 @@ local lunajson = require("lunajson")
 print("Carregando Arquivos locais")
 -- lista de addons
 local addon_commands = require("commands")
-local addon_chatcommands = require("chatcommands")
 
 print("Carregamento Pronto")
 
@@ -36,7 +35,7 @@ function get_update(offset)
   end
   --getupdate
   print("request enviado")
-  local response = http.request(url_path .. "getUpdates?offset=" .. offset .. "&limit=1&timeout=2&allowed_updates=[“message”}")
+  local response = http.request(url_path .. "getUpdates?offset=" .. offset .. "&parse_mode=MarkdownV2&limit=1&timeout=2&allowed_updates=[“message”}")
   local update = lunajson.decode(response)
   print("request recebido")
 
@@ -79,11 +78,11 @@ end
 
 --função de debug
 function debug_mensages(update_id,chat_id,text,user_id)
-  if text == "/debug_mode_true" and admin_id == user_id then
+  if text == "/debug_mode_true" and Admin_id == user_id then
     debug_mode = true
     send_message(chat_id, "DebugMode Abilitado")
     print("DebugMode Abilitado")
-  elseif text == "/debug_mode_false" and admin_id == user_id then
+  elseif text == "/debug_mode_false" and Admin_id == user_id then
     debug_mode = false
     send_message(chat_id, "DebugMode Desabilitado")
     print("DebugMode Desabilitado")
@@ -104,7 +103,7 @@ end
 
 --recarregar a lista de comandos
 function reload_addons(text, chat_id, user_id)
-  if text == "/reload" and admin_id == user_id then
+  if text == "/reload" and Admin_id == user_id then
     send_message(chat_id, "Recarregando comandos")
     package.loaded.commands = nil
     addon_commands = require("commands")
@@ -113,6 +112,21 @@ function reload_addons(text, chat_id, user_id)
    send_message(chat_id, "voce não pode ultilizar esse comando")
   end
 end
+
+
+--funcções que permitem criar novos comando pelo chat
+function new_chat_command(text, chat_id, user_id, Admin_id, update_id)
+
+end
+
+-- função para chamar os comandos criados pelo chat
+function call_chat_commands()
+  
+end
+
+
+
+
 
 local i = 0
 
@@ -135,9 +149,9 @@ while true do
     if text == "/reload" then
       reload_addons(text, chat_id, user_id)
     end
-    addon_commands.commands(text, chat_id, user_id)
-    addon_chatcommands.chatcommands(text, chat_id, user_id)
-
+    addon_commands.commands(text, chat_id, user_id, Admin_id)
+    new_chat_command(text, chat_id, user_id, Admin_id, update_id)
+    
 
     --mostra algumas informaçoes para debug
     debug_mensages(update_id,chat_id,text,user_id)

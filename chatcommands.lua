@@ -1,6 +1,0 @@
-local chatcommands = {}
-
-
-
-
-return chatcommands
