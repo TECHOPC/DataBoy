@@ -5,17 +5,19 @@
 --configs para o bot
 local debug_mode = false --controla mensagems de debug pode ser alterado usando o comando /debug_mode_true ou /debug_mode_false
 Admin_id = 123456789  --seu id
-local bot_token = "YOURTOKENHERE" --token do bot
+local bot_token = "123456789:AABBCCDDEEFFGGHHII123456789" --token do bot
 local url_path = "https://api.telegram.org/bot"..bot_token.."/" --url para request
-
 
 
 print("Carregando Modulos")
 local http = require("socket.http")
 local socket = require("socket")
 local lunajson = require("lunajson")
-print("Carregando Arquivos locais")
+
+
+
 -- lista de addons
+print("Carregando Arquivos locais")
 local addon_commands = require("commands")
 
 print("Carregamento Pronto")
@@ -36,8 +38,9 @@ function get_update(offset)
   --getupdate
   print("request enviado")
   local response = http.request(url_path .. "getUpdates?offset=" .. offset .. "&parse_mode=MarkdownV2&limit=1&timeout=2&allowed_updates=[“message”}")
-  local update = lunajson.decode(response)
   print("request recebido")
+  local update = lunajson.decode(response)
+  print("request decodificado")
 
   if update.result[1] == nil then
     print("update vazio")
@@ -99,8 +102,6 @@ function debug_mensages(update_id,chat_id,text,user_id)
   end
 end
 
-
-
 --recarregar a lista de comandos
 function reload_addons(text, chat_id, user_id)
   if text == "/reload" and Admin_id == user_id then
@@ -108,24 +109,16 @@ function reload_addons(text, chat_id, user_id)
     package.loaded.commands = nil
     addon_commands = require("commands")
     print("Recarregando comandos")
+
+    local file = io.open("comandslist.txt", "r")
+    local str = file:read("*a")
+    Chat_commands = Split(str,",")
+    file:close()
+    
     else
    send_message(chat_id, "voce não pode ultilizar esse comando")
   end
 end
-
-
---funcções que permitem criar novos comando pelo chat
-function new_chat_command(text, chat_id, user_id, Admin_id, update_id)
-
-end
-
--- função para chamar os comandos criados pelo chat
-function call_chat_commands()
-  
-end
-
-
-
 
 
 local i = 0
