@@ -21,9 +21,10 @@ Bot ainda em desenvolvimento
 - /help
 - /test
 - /echo
-
+- ( todos os Chat commands adicionados )
 ### Lista de comandos para Admin
 
 - /reload
 - /debug_mode_true
 - /debug_mode_false
+- /new_command

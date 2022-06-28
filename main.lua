@@ -4,8 +4,8 @@
 
 --configs para o bot
 local debug_mode = false --controla mensagems de debug pode ser alterado usando o comando /debug_mode_true ou /debug_mode_false
-Admin_id = 123456789  --seu id
-local bot_token = "123456789:AABBCCDDEEFFGGHHII123456789" --token do bot
+Admin_id = 12345678910  --seu id
+local bot_token = "12345678910:AABBCCDDEEFFGGHHIIJJKKL" --token do bot
 local url_path = "https://api.telegram.org/bot"..bot_token.."/" --url para request
 
 
@@ -105,7 +105,10 @@ end
 --recarregar a lista de comandos
 function reload_addons(text, chat_id, user_id)
   if text == "/reload" and Admin_id == user_id then
+    
+    if chat_id ~= nil then
     send_message(chat_id, "Recarregando comandos")
+    end
     package.loaded.commands = nil
     addon_commands = require("commands")
     print("Recarregando comandos")
@@ -116,12 +119,15 @@ function reload_addons(text, chat_id, user_id)
     file:close()
     
     else
-   send_message(chat_id, "voce não pode ultilizar esse comando")
+      if chat_id ~= nil then
+      send_message(chat_id, "voce não pode ultilizar esse comando")
+      end
   end
 end
 
 
 local i = 0
+reload_addons("/reload",nil,Admin_id)
 
 --loop de execucao
 print("Iniciando Loop Principal")
