@@ -4,8 +4,8 @@
 
 --configs para o bot
 local debug_mode = false --controla mensagems de debug pode ser alterado usando o comando /debug_mode_true ou /debug_mode_false
-Admin_id = 12345678910  --seu id
-local bot_token = "12345678910:AABBCCDDEEFFGGHHIIJJKKL" --token do bot
+Admin_id = 123456789  --seu id
+local bot_token = "123456789:ABCDFGHIJKLMNOPKRST123456798ASDGWREGH" --token do bot
 local url_path = "https://api.telegram.org/bot"..bot_token.."/" --url para request
 
 
@@ -100,6 +100,14 @@ function debug_mensages(update_id,chat_id,text,user_id)
   print("text ="..text)
   print("user_id ="..user_id)
   end
+end
+
+function Split(s, delimiter)
+  local result = {};
+  for match in (s..delimiter):gmatch("(.-)"..delimiter) do
+      table.insert(result, match);
+  end
+  return result;
 end
 
 --recarregar a lista de comandos

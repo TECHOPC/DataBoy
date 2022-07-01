@@ -28,3 +28,5 @@ Bot ainda em desenvolvimento
 - /debug_mode_true
 - /debug_mode_false
 - /new_command
+- /remove_command
+- /list_commands
