@@ -12,23 +12,9 @@ end
 
 function help(text, chat_id)
   if text == "/help" then
-    send_message(chat_id, "esses são os comandos que eu entendo /start , /help , /echo , /test")
+    send_message(chat_id, "esses são os comandos que eu entendo /start , /help , /list_commands")
     print("Comando Test")
   end 
-end
-
-function echo(text, chat_id)
-  if text == "/echo" then
-    send_message(chat_id, "echo...echo...echo...")
-    print("Comando Echo")
-  end
-end
-
-function test(chat_id, text)
-  if text == "/test" then
-    send_message(chat_id, "testando 1 2 3 testando")
-    print("Comando Test")
-  end  
 end
 
 
@@ -142,7 +128,7 @@ function list_chat_commands(text, chat_id)
   if text == "/list_commands" then
     send_message(chat_id, "Essa é a lista de comandos:")
     send_message(chat_id, "Comandos padrão")
-    send_message(chat_id, "/start /help /echo /test /new_command (apenas admin)")
+    send_message(chat_id, "/start /help /new_command (apenas admin)")
     send_message(chat_id, "/list_commands (aperesse essa lista)")
     send_message(chat_id, "Comandos personalizados (Adicionados pelo chat)")
     local listcommands = {}
@@ -169,8 +155,6 @@ end
 --chama todos os comandos
 
 function addon_commands.commands(text, chat_id,user_id, Admin_id) 
-  echo(text, chat_id)
-  test(chat_id, text)
   start(chat_id , text)
   help(text, chat_id)
   new_chat_command()

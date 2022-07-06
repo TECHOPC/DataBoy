@@ -5,7 +5,7 @@
 --configs para o bot
 local debug_mode = false --controla mensagems de debug pode ser alterado usando o comando /debug_mode_true ou /debug_mode_false
 Admin_id = 123456789  --seu id
-local bot_token = "123456789:ABCDFGHIJKLMNOPKRST123456798ASDGWREGH" --token do bot
+local bot_token = "123456789:AABBCCDDEEFFGGHHIIJJKKLLMMNNOOPPQQ" --token do bot
 local url_path = "https://api.telegram.org/bot"..bot_token.."/" --url para request
 
 
